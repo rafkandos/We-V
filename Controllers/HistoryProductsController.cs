@@ -74,27 +74,52 @@ namespace wevi.Controllers
         // POST: api/HistoryProducts
         [HttpPost]
         //public async Task<ActionResult<HistoryProduct>> PostHistoryProduct(HistoryProduct historyProduct)
-        public async Task<outputHisPro> PostHistoryProduct(HistoryProduct historyProduct)
+        public async Task<outputScanQr> PostHistoryProduct(paramScanQr pr)
         {
-            _context.HistoryProduct.Add(historyProduct);
-            await _context.SaveChangesAsync();
-            outputHisPro output = new outputHisPro();
-            var result = new HistoryProduct();
+            //_context.HistoryProduct.Add(historyProduct);
+            //await _context.SaveChangesAsync();
+
+            outputScanQr output = new outputScanQr();
+            var result = new resultScanQr();
 
             try
             {
-                if (historyProduct.hisproid != 0)
+                HistoryProduct dtPrd = new HistoryProduct();
+                dtPrd.hisproid = pr.hisproid;
+                dtPrd.productid = pr.productid;
+                dtPrd.userid = pr.userid;
+                dtPrd.scantime = pr.scantime;
+
+                _context.HistoryProduct.Add(dtPrd);
+                _context.SaveChanges();
+
+                var dtlogin = (from x in _context.HistoryProduct.Where(ahha => ahha.productid == pr.productid)
+                               join prd in _context.Product on x.productid equals prd.productid
+                               //where x.productid == pr.productid
+                               //orderby x.commentid descending
+                               select new Product
+                               {
+                                   productid = prd.productid,
+                                   productname = prd.productname,
+                                   productdetail = prd.productdetail,
+                                   productcode = prd.productcode,
+                                   bannerproduct = prd.bannerproduct,
+                                   linkstring = prd.linkstring
+
+                               }).ToList();
+
+                if (dtlogin != null)
                 {
-                    result = historyProduct;
+                    //result = dtlogin;
 
                     output.Result = "OK";
-                    output.hispro = result;
+                    output.products = dtlogin;
                     output.Message = "Success";
                 }
                 else
                 {
                     output.Result = "NG";
-                    output.Message = " Failed";
+                    output.Message = "GagalBosque";
                 }
             }
             catch (Exception ex)
@@ -102,6 +127,7 @@ namespace wevi.Controllers
                 output.Result = "NG";
                 output.Message = ex.ToString();
             }
+
             return output;
         }
 

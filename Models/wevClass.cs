@@ -138,4 +138,27 @@ namespace wevi.Models
     {
         public int userid { get; set; }
     }
+
+    public class outputScanQr
+    {
+        public string Result { get; set; }
+        public object products { get; set; }
+        public string Message { get; set; }
+    }
+    public class resultScanQr
+    {
+        public int productid { get; set; }
+        public string productname { get; set; }
+        public string productdetail { get; set; }
+        public string productcode { get; set; }
+        public string bannerproduct { get; set; }
+        public string linkstring { get; set; }
+    }
+    public class paramScanQr
+    {
+        public int hisproid { get; set; }
+        public int userid { get; set; }
+        public int productid { get; set; }
+        public DateTime? scantime { get; set; }
+    }
 }

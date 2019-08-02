@@ -81,6 +81,56 @@ namespace wevi.Controllers
             return CreatedAtAction("GetProduct", new { id = product.productid }, product);
         }
 
+        //[HttpPost]
+        //public async Task<outputScanQr> PostProduct(Product product, paramScanQr pr)
+        //{
+        //    _context.Product.Add(product);
+        //    await _context.SaveChangesAsync();
+
+        //    outputScanQr output = new outputScanQr();
+        //    var result = new Product();
+
+        //    try
+        //    {
+        //        var dtlogin = (from x in _context.HistoryProduct.Where(ahha => ahha.productid == pr.productid)
+        //                       join prd in _context.Product on x.productid equals prd.productid
+        //                       //where x.productid == pr.productid
+        //                       //orderby x.commentid descending
+        //                       select new Product
+        //                       {
+        //                           productid = prd.productid,
+        //                           productname = prd.productname,
+        //                           productdetail = prd.productdetail,
+        //                           productcode = prd.productcode,
+        //                           bannerproduct = prd.bannerproduct,
+        //                           linkstring = prd.linkstring,
+
+
+        //                       }).ToList();
+
+        //        if (dtlogin != null)
+        //        {
+        //            //result = dtlogin;
+
+        //            output.Result = "OK";
+        //            output.products = dtlogin;
+        //            output.Message = "Success";
+        //        }
+        //        else
+        //        {
+        //            output.Result = "NG";
+        //            output.Message = "GagalBosque";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        output.Result = "NG";
+        //        output.Message = ex.ToString();
+        //    }
+
+        //    return output;
+        //}
+
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> DeleteProduct(int id)

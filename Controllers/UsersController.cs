@@ -180,7 +180,7 @@ namespace wevi.Controllers
                 else
                 {
                     output.Result = "NG";
-                    output.Message = "Failed Insert Employee";
+                    output.Message = "Failed Insert User";
                 }
             }
             catch (Exception ex)
