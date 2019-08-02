@@ -32,4 +32,4 @@ D:\Visionet\wevi\obj\Debug\netcoreapp2.2\Razor\Views\Banner\Delete.g.cshtml.cs
 D:\Visionet\wevi\obj\Debug\netcoreapp2.2\Razor\Views\Banner\Details.g.cshtml.cs
 D:\Visionet\wevi\obj\Debug\netcoreapp2.2\Razor\Views\Banner\Edit.g.cshtml.cs
 D:\Visionet\wevi\obj\Debug\netcoreapp2.2\Razor\Views\Banner\Index.g.cshtml.cs
-D:\Visionet\wevi\obj\Debug\netcoreapp2.2\wevi.csprojAssemblyReference.cache
+D:\Visionet\wevi\obj\Debug\netcoreapp2.2\Razor\Views\Home\Random.g.cshtml.cs

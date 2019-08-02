@@ -32,19 +32,21 @@ namespace wevi.Controllers
                                where x.email == pr.email && x.password == pr.password
                                select new resultlogin
                                {
-                                   ID = x.userid,
-                                   fullname = x.fullname,
+                                   userid = x.userid,
                                    password = x.password,
-                                   //Participantcode = x.participantcode,
-                                   Phone = x.phone,
-                                   major = x.major,
+                                   phone = x.phone,
                                    school = x.school,
-                                   email = x.email,
+                                   major = x.major,
                                    interest = x.interest,
+                                   email = x.email,
+                                   dateofbirth = x.dateofbirth,
+                                   createdon = x.createdon,
                                    age = x.age,
-                                   Dateofbirth = x.dateofbirth,
+                                   fullname = x.fullname,
                                    gender = x.gender,
-                                   createdon = x.createdon
+                                   role = x.role,
+                                   participantcode = x.participantcode,
+                                   profilepicture = x.profilepicture
 
                                }).FirstOrDefault();
 

@@ -72,13 +72,70 @@ namespace wevi.Controllers
         }
 
         // POST: api/UsersZ
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
-        {
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult<User>> PostUser(User user)
+        //{
+        //    _context.User.Add(user);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.userid }, user);
+        //    return CreatedAtAction("GetUser", new { id = user.userid }, user);
+        //}
+        [HttpPost]
+        public outputSignUp PostUser(paramSignUp pr)
+        {
+            outputSignUp output = new outputSignUp();
+
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var stringChars = new char[8];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
+            try
+            {
+                User dtUser = new User();
+                dtUser.userid = pr.userid;
+                dtUser.password = pr.password;
+                dtUser.phone = pr.phone;
+                dtUser.school = pr.school;
+                dtUser.major = pr.major;
+                dtUser.interest = pr.interest;
+                dtUser.email = pr.email;
+                dtUser.dateofbirth = Convert.ToDateTime(pr.dateofbirth);
+                dtUser.createdon = DateTime.Now;
+                dtUser.age = pr.age;
+                dtUser.fullname = pr.fullname;
+                dtUser.gender = pr.gender;
+                dtUser.participantcode = finalString;
+                dtUser.role = pr.role;
+                dtUser.profilepicture = pr.profilepicture;
+
+                _context.User.Add(dtUser);
+                _context.SaveChanges();
+
+                if (dtUser.userid != null && dtUser.userid != 0)
+                {
+                    output.Result = "OK";
+                    output.users = dtUser.userid;
+                    output.Message = "Insert Success";
+                }
+                else
+                {
+                    output.Result = "NG";
+                    output.Message = "Failed Insert Employee";
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
+
+            return output;
         }
 
         // DELETE: api/UsersZ/5

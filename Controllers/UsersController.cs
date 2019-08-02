@@ -102,29 +102,85 @@ namespace wevi.Controllers
             return NoContent();
         }
 
+        //[HttpPost]
+        //public async Task<outputSignUp> PostUser(User user)
+        //{
+        //    _context.User.Add(user);
+        //    await _context.SaveChangesAsync();
+
+        //    outputSignUp output = new outputSignUp();
+        //    var result = new User();
+
+        //    try
+        //    {
+        //        if (user.userid != 0)
+        //        {
+        //            result = user;
+
+        //            output.Result = "OK";
+        //            output.users = result;
+        //            output.Message = "Success";
+        //        }
+        //        else
+        //        {
+        //            output.Result = "NG";
+        //            output.Message = " Invalid Email or password";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        output.Result = "NG";
+        //        output.Message = ex.ToString();
+        //    }
+        //    return output;
+        //}
         [HttpPost]
-        public async Task<outputSignUp> PostUser(User user)
+        public outputSignUp PostUser(paramSignUp pr)
         {
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
-
             outputSignUp output = new outputSignUp();
-            var result = new User();
 
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var stringChars = new char[8];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
             try
             {
-                if (user.userid != 0)
-                {
-                    result = user;
+                User dtUser = new User();
+                dtUser.userid = pr.userid;
+                dtUser.password = pr.password;
+                dtUser.phone = pr.phone;
+                dtUser.school = pr.school;
+                dtUser.major = pr.major;
+                dtUser.interest = pr.interest;
+                dtUser.email = pr.email;
+                dtUser.dateofbirth = Convert.ToDateTime(pr.dateofbirth);
+                dtUser.createdon = DateTime.Now;
+                dtUser.age = pr.age;
+                dtUser.fullname = pr.fullname;
+                dtUser.gender = pr.gender;
+                dtUser.participantcode = finalString;
+                dtUser.role = pr.role;
+                dtUser.profilepicture = pr.profilepicture;
 
+                _context.User.Add(dtUser);
+                _context.SaveChanges();
+
+                if (dtUser.userid != null && dtUser.userid != 0)
+                {
                     output.Result = "OK";
-                    output.users = result;
-                    output.Message = "Success";
+                    output.users = dtUser.userid;
+                    output.Message = "Insert Success";
                 }
                 else
                 {
                     output.Result = "NG";
-                    output.Message = " Invalid Email or password";
+                    output.Message = "Failed Insert Employee";
                 }
             }
             catch (Exception ex)
@@ -132,6 +188,7 @@ namespace wevi.Controllers
                 output.Result = "NG";
                 output.Message = ex.ToString();
             }
+
             return output;
         }
 

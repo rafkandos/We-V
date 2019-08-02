@@ -17,6 +17,8 @@ namespace wevi.Models
 
         public int productid { get; set; }
 
+        public DateTime? scantime { get; set; }
+
         [ForeignKey("userid")]
         public virtual User User { get; set; }
 

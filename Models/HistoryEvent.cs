@@ -17,6 +17,8 @@ namespace wevi.Models
 
         public int eventid { get; set; }
 
+        public DateTime? jointime { get; set; }
+
         [ForeignKey("userid")]
         public virtual User User { get; set; }
 

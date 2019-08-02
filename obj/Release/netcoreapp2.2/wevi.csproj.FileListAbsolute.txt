@@ -33,3 +33,4 @@ D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.Views.pdb
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.dll
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.pdb
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.csproj.CopyComplete
+D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Home\Random.g.cshtml.cs

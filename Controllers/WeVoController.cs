@@ -26,7 +26,7 @@ namespace wevi.Controllers
 
             try
             {
-                var dtUsers = _context.User.Where(p => p.userid == pr.userid).FirstOrDefault();
+                var dtUsers = _context.User.Where(p => p.userid == pr.userid && p.password != null).FirstOrDefault();
 
                 dtUsers.password = pr.password;
 

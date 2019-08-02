@@ -73,12 +73,36 @@ namespace wevi.Controllers
 
         // POST: api/HistoryProducts
         [HttpPost]
-        public async Task<ActionResult<HistoryProduct>> PostHistoryProduct(HistoryProduct historyProduct)
+        //public async Task<ActionResult<HistoryProduct>> PostHistoryProduct(HistoryProduct historyProduct)
+        public async Task<outputHisPro> PostHistoryProduct(HistoryProduct historyProduct)
         {
             _context.HistoryProduct.Add(historyProduct);
             await _context.SaveChangesAsync();
+            outputHisPro output = new outputHisPro();
+            var result = new HistoryProduct();
 
-            return CreatedAtAction("GetHistoryProduct", new { id = historyProduct.hisproid }, historyProduct);
+            try
+            {
+                if (historyProduct.hisproid != 0)
+                {
+                    result = historyProduct;
+
+                    output.Result = "OK";
+                    output.hispro = result;
+                    output.Message = "Success";
+                }
+                else
+                {
+                    output.Result = "NG";
+                    output.Message = " Failed";
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
+            return output;
         }
 
         // DELETE: api/HistoryProducts/5

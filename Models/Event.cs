@@ -28,5 +28,7 @@ namespace wevi.Models
         public string linkstring { get; set; }
 
         public string bannerevent { get; set; }
+
+        public string place { get; set; }
     }
 }

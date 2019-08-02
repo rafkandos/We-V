@@ -13,18 +13,21 @@ namespace wevi.Models
     }
     public class resultlogin
     {
-        public int ID { get; set; }
-        public string fullname { get; set; }
+        public int userid { get; set; }
         public string password { get; set; }
-        public string Phone { get; set; }
+        public string phone { get; set; }
         public string school { get; set; }
         public string major { get; set; }
         public string interest { get; set; }
         public string email { get; set; }
-        public DateTime? Dateofbirth { get; set; }
-        public int? age { get; set; }
-        public string gender { get; set; }
+        public DateTime? dateofbirth { get; set; }
         public DateTime? createdon { get; set; }
+        public int age { get; set; }
+        public string fullname { get; set; }
+        public string gender { get; set; }
+        public int role { get; set; }
+        public string participantcode { get; set; }
+        public string profilepicture { get; set; }
     }
     public class paramlogin
     {
@@ -74,19 +77,65 @@ namespace wevi.Models
         public object users { get; set; }
         public string Message { get; set; }
     }
-    public class resultSignUp
+    public class paramSignUp
     {
-        public int ID { get; set; }
-        public string fullname { get; set; }
-        public string Participantcode { get; set; }
+        public int userid { get; set; }
         public string password { get; set; }
-        public string Phone { get; set; }
+        public string phone { get; set; }
         public string school { get; set; }
         public string major { get; set; }
         public string interest { get; set; }
         public string email { get; set; }
-        public DateTime? Dateofbirth { get; set; }
-        public int? age { get; set; }
+        public DateTime? dateofbirth { get; set; }
+        public DateTime? createdon { get; set; }
+        public int age { get; set; }
+        public string fullname { get; set; }
         public string gender { get; set; }
+        public int role { get; set; }
+        public string participantcode { get; set; }
+        public string profilepicture { get; set; }
+    }
+
+    public class outputHisPro
+    {
+        public string Result { get; set; }
+        public object hispro { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class outputGetCommentById
+    {
+        public string Result { get; set; }
+        public object comments { get; set; }
+        public string Message { get; set; }
+    }
+    public class resultGetCommentById
+    {
+        public string fullname { get; set; }
+        public string comment { get; set; }
+        public DateTime? commentdate { get; set; }
+
+    }
+    public class paramGetCommentById
+    {
+        public int productid { get; set; }
+    }
+
+    public class outputHistoryEvent
+    {
+        public string Result { get; set; }
+        public object events { get; set; }
+        public string Message { get; set; }
+    }
+    public class resultHistoryEvent
+    {
+        public string eventname { get; set; }
+        public string place { get; set; }
+        public DateTime? eventdate { get; set; }
+
+    }
+    public class paramHistoryEvent
+    {
+        public int userid { get; set; }
     }
 }
