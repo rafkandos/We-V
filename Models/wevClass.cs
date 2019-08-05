@@ -161,4 +161,11 @@ namespace wevi.Models
         public int productid { get; set; }
         public DateTime? scantime { get; set; }
     }
+
+    public class outputHisEvt
+    {
+        public string Result { get; set; }
+        public object hisevt { get; set; }
+        public string Message { get; set; }
+    }
 }

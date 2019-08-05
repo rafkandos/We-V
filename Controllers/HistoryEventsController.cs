@@ -72,13 +72,48 @@ namespace wevi.Controllers
         }
 
         // POST: api/HistoryEvents
+        //[HttpPost]
+        //public async Task<ActionResult<HistoryEvent>> PostHistoryEvent(HistoryEvent historyEvent)
+        //{
+        //    outputHisEvt output = new outputHisEvt();
+
+        //    _context.HistoryEvent.Add(historyEvent);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetHistoryEvent", new { id = historyEvent.hisevid }, historyEvent);
+        //}
+
         [HttpPost]
-        public async Task<ActionResult<HistoryEvent>> PostHistoryEvent(HistoryEvent historyEvent)
+        public async Task<outputHisEvt> PostHistoryEvent(HistoryEvent historyEvent)
         {
             _context.HistoryEvent.Add(historyEvent);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetHistoryEvent", new { id = historyEvent.hisevid }, historyEvent);
+            outputHisEvt output = new outputHisEvt();
+            var result = new HistoryEvent();
+
+            try
+            {
+                if (historyEvent.hisevid != 0)
+                {
+                    result = historyEvent;
+
+                    output.Result = "OK";
+                    output.hisevt = result;
+                    output.Message = "Success";
+                }
+                else
+                {
+                    output.Result = "NG";
+                    output.Message = " Gagalbosque";
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
+            return output;
         }
 
         // DELETE: api/HistoryEvents/5
