@@ -132,11 +132,13 @@ namespace wevi.Models
         public string eventname { get; set; }
         public string place { get; set; }
         public DateTime? eventdate { get; set; }
+        public DateTime? jointime { get; set; }
 
     }
     public class paramHistoryEvent
     {
         public int userid { get; set; }
+        //public int eventid { get; set; }
     }
 
     public class outputScanQr

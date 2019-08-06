@@ -151,37 +151,48 @@ namespace wevi.Controllers
             var finalString = new String(stringChars);
             try
             {
-                User dtUser = new User();
-                dtUser.userid = pr.userid;
-                dtUser.password = pr.password;
-                dtUser.phone = pr.phone;
-                dtUser.school = pr.school;
-                dtUser.major = pr.major;
-                dtUser.interest = pr.interest;
-                dtUser.email = pr.email;
-                dtUser.dateofbirth = Convert.ToDateTime(pr.dateofbirth);
-                dtUser.createdon = DateTime.Now;
-                dtUser.age = pr.age;
-                dtUser.fullname = pr.fullname;
-                dtUser.gender = pr.gender;
-                dtUser.participantcode = finalString;
-                dtUser.role = pr.role;
-                dtUser.profilepicture = pr.profilepicture;
+                var GetDataUser = _context.User.Where(mboh => mboh.email == pr.email).FirstOrDefault();
 
-                _context.User.Add(dtUser);
-                _context.SaveChanges();
-
-                if (dtUser.userid != null && dtUser.userid != 0)
+                if(GetDataUser == null)
                 {
-                    output.Result = "OK";
-                    output.users = dtUser.userid;
-                    output.Message = "Insert Success";
+                    User dtUser = new User();
+                    dtUser.userid = pr.userid;
+                    dtUser.password = pr.password;
+                    dtUser.phone = pr.phone;
+                    dtUser.school = pr.school;
+                    dtUser.major = pr.major;
+                    dtUser.interest = pr.interest;
+                    dtUser.email = pr.email;
+                    dtUser.dateofbirth = Convert.ToDateTime(pr.dateofbirth);
+                    dtUser.createdon = DateTime.Now;
+                    dtUser.age = pr.age;
+                    dtUser.fullname = pr.fullname;
+                    dtUser.gender = pr.gender;
+                    dtUser.participantcode = finalString;
+                    dtUser.role = pr.role;
+                    dtUser.profilepicture = pr.profilepicture;
+
+                    _context.User.Add(dtUser);
+                    _context.SaveChanges();
+
+                    if (dtUser.userid != null && dtUser.userid != 0)
+                    {
+                        output.Result = "OK";
+                        output.users = dtUser.userid;
+                        output.Message = "Insert Success";
+                    }
+                    else
+                    {
+                        output.Result = "NG";
+                        output.Message = "Failed Insert User";
+                    }
                 }
                 else
                 {
                     output.Result = "NG";
-                    output.Message = "Failed Insert User";
+                    output.Message = "Email Already Exist";
                 }
+                
             }
             catch (Exception ex)
             {

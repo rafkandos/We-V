@@ -86,31 +86,41 @@ namespace wevi.Controllers
         [HttpPost]
         public async Task<outputHisEvt> PostHistoryEvent(HistoryEvent historyEvent)
         {
-            _context.HistoryEvent.Add(historyEvent);
-            await _context.SaveChangesAsync();
-
             outputHisEvt output = new outputHisEvt();
             var result = new HistoryEvent();
 
             try
             {
-                if (historyEvent.hisevid != 0)
-                {
-                    result = historyEvent;
+                var checkJoin = _context.HistoryEvent.Where(haha => haha.userid == historyEvent.userid && haha.eventid == historyEvent.eventid).FirstOrDefault();
 
-                    output.Result = "OK";
-                    output.hisevt = result;
-                    output.Message = "Success";
+                if(checkJoin == null)
+                {
+                    _context.HistoryEvent.Add(historyEvent);
+                    await _context.SaveChangesAsync();
+
+                    if (historyEvent.hisevid != 0)
+                    {
+                        result = historyEvent;
+
+                        output.Result = "OK";
+                        output.hisevt = result;
+                        output.Message = "Success";
+                    }
+                    else
+                    {
+                        output.Result = "NG";
+                        output.Message = "Gagalbosque";
+                    }
                 }
                 else
                 {
                     output.Result = "NG";
-                    output.Message = " Gagalbosque";
+                    output.Message = "Ora oleh join peng pindo bosss pisan ae wes mari peyan";
                 }
             }
             catch (Exception ex)
             {
-                output.Result = "NG";
+                output.Result = "MG";
                 output.Message = ex.ToString();
             }
             return output;

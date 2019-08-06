@@ -35,7 +35,8 @@ namespace wevi.Controllers
                                {
                                    eventname = evt.eventname,
                                    place = evt.place,
-                                   eventdate = evt.eventdate
+                                   eventdate = evt.eventdate,
+                                   jointime = x.jointime
 
                                }).ToList();
 
