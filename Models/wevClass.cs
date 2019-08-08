@@ -35,6 +35,20 @@ namespace wevi.Models
         public string password { get; set; }
     }
 
+    public class outputEvents
+    {
+        public string Result { get; set; }
+        public object events { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class outputProducts
+    {
+        public string Result { get; set; }
+        public object products { get; set; }
+        public string Message { get; set; }
+    }
+
     public class outputresetpassword
     {
         public string Result { get; set; }
@@ -169,5 +183,31 @@ namespace wevi.Models
         public string Result { get; set; }
         public object hisevt { get; set; }
         public string Message { get; set; }
+    }
+
+    public class outputHisProd
+    {
+        public string Result { get; set; }
+        public object hisprod { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class paramHisProd
+    {
+        public int userid { get; set; }
+        //public int eventid { get; set; }
+    }
+
+    public class resultHisProd
+    {
+        public string productname { get; set; }
+        public DateTime? scantime { get; set; }
+
+    }
+
+    public class resultBanner
+    {
+        public string bannerevent { get; set; }
+
     }
 }

@@ -21,24 +21,72 @@ namespace wevi.Controllers
         }
 
         // GET: api/Products
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        //{
+        //    return await _context.Product.ToListAsync();
+        //}
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        public async Task<outputProducts> GetProduct()
         {
-            return await _context.Product.ToListAsync();
+            //await _context.User.ToListAsync();
+
+            outputProducts output = new outputProducts();
+
+            try
+            {
+                output.Result = "OK";
+                output.products = await _context.Product.ToListAsync();
+                output.Message = "Success";
+            }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
+            return output;
+
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        //public async Task<ActionResult<Product>> GetProduct(int id)
+        //{
+        //    var product = await _context.Product.FindAsync(id);
+
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return product;
+        //}
+        public async Task<outputProducts> GetProducts(int id)
         {
-            var product = await _context.Product.FindAsync(id);
+            outputProducts output = new outputProducts();
 
-            if (product == null)
+            try
             {
-                return NotFound();
-            }
+                var prod = await _context.Product.FindAsync(id);
 
-            return product;
+                if (prod != null)
+                {
+                    output.Result = "OK";
+                    output.products = prod;
+                    output.Message = "Success";
+                }
+                else
+                {
+                    output.Result = "NG";
+                    output.Message = "Failure";
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
+            return output;
         }
 
         // PUT: api/Products/5

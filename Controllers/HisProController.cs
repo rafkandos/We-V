@@ -10,29 +10,31 @@ namespace wevi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BannerController : ControllerBase
+    public class HisProController : ControllerBase
     {
         private readonly WevDbContext _context;
 
-        public BannerController(WevDbContext context)
+        public HisProController(WevDbContext context)
         {
             _context = context;
         }
 
-        [HttpGet]
-        public outputEvents GetBannerEvents(string GetBannerEvents)
+        [HttpPost]
+        public outputHisProd GetHisProd(string GetHisProd, paramHisProd pr)
         {
-            outputEvents output = new outputEvents();
-            var result = new resultBanner();
+            outputHisProd output = new outputHisProd();
+            var result = new resultHisProd();
 
             try
             {
-                var dtlogin = (from x in _context.Event
+                var dtlogin = (from x in _context.HistoryProduct.Where(ahha => ahha.userid == pr.userid)
+                               join prd in _context.Product on x.productid equals prd.productid
                                //where x.productid == pr.productid
                                //orderby x.commentid descending
-                               select new resultBanner
+                               select new resultHisProd
                                {
-                                   bannerevent = x.bannerevent
+                                   productname = prd.productname,
+                                   scantime = x.scantime
 
                                }).ToList();
 
@@ -41,7 +43,7 @@ namespace wevi.Controllers
                     //result = dtlogin;
 
                     output.Result = "OK";
-                    output.events = dtlogin;
+                    output.hisprod = dtlogin;
                     output.Message = "Success";
                 }
                 else
@@ -58,5 +60,6 @@ namespace wevi.Controllers
 
             return output;
         }
+
     }
 }

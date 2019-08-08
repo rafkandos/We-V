@@ -15,7 +15,6 @@ namespace wevi.Models
 
         //public DbSet<Admin> Admin { get; set; }
         public DbSet<Comment> Comment { get; set; }
-        public DbSet<Banner> Banner { get; set; }
         public DbSet<Event> Event { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<User> User { get; set; }

@@ -21,24 +21,63 @@ namespace wevi.Controllers
         }
 
         // GET: api/Events
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<Event>>> GetEvent()
+        //{
+        //    return await _context.Event.ToListAsync();
+        //}
+
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetEvent()
+        public async Task<outputEvents> GetEvent()
         {
-            return await _context.Event.ToListAsync();
+            //await _context.User.ToListAsync();
+
+            outputEvents output = new outputEvents();
+
+            try
+            {
+                output.Result = "OK";
+                output.events = await _context.Event.ToListAsync();
+                output.Message = "Success";
+            }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
+            return output;
+
         }
 
         // GET: api/Events/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Event>> GetEvent(int id)
+        //public async Task<ActionResult<Event>> GetEvent(int id)
+        public async Task<outputEvents> GetEvent(int id)
         {
-            var @event = await _context.Event.FindAsync(id);
+            outputEvents output = new outputEvents();
 
-            if (@event == null)
+            try
             {
-                return NotFound();
-            }
+                var evt = await _context.Event.FindAsync(id);
 
-            return @event;
+                if (evt != null)
+                {
+                    output.Result = "OK";
+                    output.events = evt;
+                    output.Message = "Success";
+                }
+                else
+                {
+                    output.Result = "NG";
+                    output.Message = "Failure";
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
+            return output;
         }
 
         // PUT: api/Events/5

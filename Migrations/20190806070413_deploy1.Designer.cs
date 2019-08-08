@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using wevi.Models;
@@ -9,15 +10,28 @@ using wevi.Models;
 namespace wevi.Migrations
 {
     [DbContext(typeof(WevDbContext))]
-    partial class WevDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190806070413_deploy1")]
+    partial class deploy1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("wevi.Models.Banner", b =>
+                {
+                    b.Property<int>("bannerid")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("image");
+
+                    b.HasKey("bannerid");
+
+                    b.ToTable("Banner");
+                });
 
             modelBuilder.Entity("wevi.Models.Comment", b =>
                 {

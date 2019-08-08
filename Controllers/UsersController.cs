@@ -74,32 +74,59 @@ namespace wevi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<outputSignUp> PutUser(int id, User user)
         {
-            if (id != user.userid)
-            {
-                return BadRequest();
-            }
+            outputSignUp output = new outputSignUp();
 
-            _context.Entry(user).State = EntityState.Modified;
+            //if (id != user.userid)
+            //{
+            //    return BadRequest();
+            //}
+
+            //_context.Entry(user).State = EntityState.Modified;
+
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!UserExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
             try
             {
+                _context.Entry(user).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
+
+                if (user.userid != 0)
                 {
-                    return NotFound();
+                    //result = user;
+
+                    output.Result = "OK";
+                    output.users = user;
+                    output.Message = "Success";
                 }
                 else
                 {
-                    throw;
+                    output.Result = "NG";
+                    output.Message = "Fail";
                 }
             }
+            catch (Exception ex)
+            {
+                output.Result = "NG";
+                output.Message = ex.ToString();
+            }
 
-            return NoContent();
+            return output;
         }
 
         //[HttpPost]

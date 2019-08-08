@@ -14,11 +14,6 @@ D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.AssemblyInfo.cs
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.TagHelpers.input.cache
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.TagHelpers.output.cache
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\wevi.RazorCoreGenerate.cache
-D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Banner\Create.g.cshtml.cs
-D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Banner\Delete.g.cshtml.cs
-D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Banner\Details.g.cshtml.cs
-D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Banner\Edit.g.cshtml.cs
-D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Banner\Index.g.cshtml.cs
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
 D:\Visionet\wevi\obj\Release\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
